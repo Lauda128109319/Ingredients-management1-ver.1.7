@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food Alert App</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.webmanifest">
+</head>
+<body>
+  <header>
+    <h1>食材リスト</h1>
+    <button id="logoutBtn" class="danger">ログアウト</button>
+  </header>
+
+  <main>
+    <!-- インストールボタン (PWA) -->
+    <div style="text-align:center; margin-bottom:16px;">
+      <button id="installBtn" hidden>アプリをインストール</button>
+    </div>
+
+    <!-- 食材追加フォーム -->
+    <section class="card">
+      <h2>食材を追加</h2>
+      
+      <div class="form-row">
+        <label for="name">食材名</label>
+        <!-- ▼ 変更箇所: オートコンプリートと音声ボタンのラッパー -->
+        <div style="display:flex; gap:8px; flex:1; width: 100%;">
+          <input type="text" id="name" list="nameHistory" placeholder="例: 牛乳" style="flex:1; min-width:0;">
+          <button id="voiceBtn" type="button" class="icon-btn" title="音声入力">🎤</button>
+        </div>
+        <!-- 履歴候補リスト -->
+        <datalist id="nameHistory"></datalist>
+      </div>
+
+      <div class="form-row">
+        <label for="qty">数量</label>
+        <input type="number" id="qty" value="1" min="0.1" step="0.1">
+      </div>
+      <div class="form-row">
+        <label for="date">賞味期限</label>
+        <input type="date" id="date">
+      </div>
+      <div class="actions">
+        <button id="add">追加する</button>
+      </div>
+      <p class="note">※日付未入力の場合、今日から3日後が期限になります。<br>※マイクボタンで「人参 3本」のように話すと自動入力できます。</p>
+    </section>
+
+    <!-- カレンダー表示 -->
+    <section class="card">
+      <div class="calendar-header">
+        <button id="prevMonthBtn">&lt;</button>
+        <h2 id="monthYear">----年 --月</h2>
+        <button id="nextMonthBtn">&gt;</button>
+      </div>
+      <div id="calendar" class="calendar-grid">
+        <!-- JSで描画 -->
+      </div>
+      <p class="note">食材をドラッグして日付を変更できます。月送りボタンにドラッグして月移動も可能。</p>
+    </section>
+
+    <!-- リスト表示 -->
+    <section class="card">
+      <div class="list-header">
+        <h2>リスト表示</h2>
+      </div>
+      <div id="list" class="list">
+        <!-- JSで描画 -->
+      </div>
+    </section>
+
+    <!-- AIレシピ提案 -->
+    <section class="card">
+      <h2>AIレシピ提案 (Gemini)</h2>
+      <div class="form-row">
+        <label for="apiKey">API Key</label>
+        <input type="password" id="apiKey" placeholder="Gemini API Key">
+      </div>
+      <div class="actions">
+        <button id="suggestBtn" style="background: linear-gradient(45deg, #407ac5, #9b59b6);">レシピを提案してもらう</button>
+      </div>
+      <div id="recipeOutput" style="margin-top:16px; display:none; border-top:1px solid #243150; padding-top:10px; line-height:1.6;"></div>
+    </section>
+
+    <!-- 設定・デバッグ -->
+    <section class="card">
+      <h2>設定・管理</h2>
+      <div class="actions">
+        <button id="testNotify">通知テスト</button>
+        <button id="clearAllBtn" class="danger">全データを削除</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- 編集モーダル -->
+  <dialog id="editDialog">
+    <h2>内容を編集</h2>
+    <div class="form-row">
+      <label for="editName">食材名</label>
+      <input type="text" id="editName">
+    </div>
+    <div class="form-row">
+      <label for="editQty">数量</label>
+      <input type="number" id="editQty" step="0.1">
+    </div>
+    <div class="form-row">
+      <label for="editDate">賞味期限</label>
+      <input type="date" id="editDate">
+    </div>
+    <div class="actions" style="justify-content: flex-end; margin-top:20px;">
+      <button id="cancelEditBtn" style="background:#4b5563;">キャンセル</button>
+      <button id="saveEditBtn">保存</button>
+    </div>
+  </dialog>
+
+  <footer>
+    &copy; Food Alert App
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

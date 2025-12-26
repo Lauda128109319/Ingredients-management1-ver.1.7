@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - Food Alert PWA</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+    }
+    .form-container {
+      width: 100%;
+      max-width: 400px;
+    }
+    .form-toggle {
+      text-align: center;
+      margin-top: 16px;
+    }
+    .form-toggle a {
+      color: var(--acc);
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .error-msg {
+        color: var(--danger);
+        margin-top: 8px;
+        font-size: 14px;
+        display: none; /* 初期状態は非表示 */
+    }
+    #registerForm {
+      display: none; /* 初期状態は登録フォームを隠す */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Food Alert PWA</h1>
+  </header>
+
+  <main>
+    <div class="form-container">
+      <!-- ログインフォーム -->
+      <section id="loginForm" class="card">
+        <h2>ログイン</h2>
+        <div class="form-row">
+          <label>ユーザー名</label>
+          <input id="loginUser" autocomplete="username">
+        </div>
+        <div class="form-row">
+          <label>パスワード</label>
+          <input id="loginPass" type="password" autocomplete="current-password">
+        </div>
+        <div class="actions">
+          <button id="loginBtn">ログイン</button>
+        </div>
+        <p id="loginError" class="error-msg"></p>
+      </section>
+
+      <!-- 新規登録フォーム -->
+      <section id="registerForm" class="card">
+        <h2>新規登録</h2>
+        <div class="form-row">
+          <label>ユーザー名</label>
+          <input id="regUser" autocomplete="username">
+        </div>
+        <div class="form-row">
+          <label>パスワード</label>
+          <input id="regPass" type="password" autocomplete="new-password">
+        </div>
+        <div class="actions">
+          <button id="registerBtn">登録する</button>
+        </div>
+        <p id="regError" class="error-msg"></p>
+      </section>
+
+      <div class="form-toggle">
+        <a id="showRegisterLink">新規登録はこちら</a>
+        <a id="showLoginLink" style="display:none;">ログインはこちら</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <small>ユーザー情報はLocalStorageに保存されます。</small>
+  </footer>
+
+  <script src="login.js"></script>
+</body>
+</html>

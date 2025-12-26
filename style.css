@@ -1,0 +1,363 @@
+:root{
+    --bg:#0b201f;
+    --card:#121a2e;
+    --text:#e5e7eb;
+    --muted:#9ca3af;
+    --acc:#1990c7;
+    --danger:#ef4444;
+    --warn:#f59e0b;
+    --ok:#10b981
+}
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+    background:linear-gradient(180deg,#407ac5,#37874a);
+    color:var(--text);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column
+}
+
+header{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 20px;
+    background:#0b1224;
+    border-bottom:1px solid #1f4441
+}
+
+h1{
+    margin:0;
+    font-size:20px
+}
+
+main{
+    max-width:880px;
+    margin:18px auto;
+    padding:0 16px;
+    width:100%;
+    flex:1
+}
+
+.card{
+    background:var(--card);
+    border:1px solid #1f2a44;
+    border-radius:16px;
+    padding:16px;
+    margin-bottom:16px;
+    box-shadow:0 10px 30px rgba(0, 0, 0, 0.25)
+}
+
+h2{
+    margin:0 0 12px 0;
+    font-size:18px
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:10px;
+    align-items:center;
+    margin-bottom:10px
+}
+
+input{
+    padding:10px 12px;
+    border-radius:10px;
+    border:1px solid #273352;
+    background:#0f172a;
+    color:var(--text);
+    width: 100%; /* inputの幅を調整 */
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    margin-top:8px
+}
+
+button{
+    background:var(--acc);
+    color:rgb(255, 255, 255);
+    border:none;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer
+}
+
+button#testNotify{
+    background:#38a24e
+}
+
+button.danger{
+    background:var(--danger)
+}
+
+/* ▼ アイコンボタン（マイク用）のスタイル */
+.icon-btn {
+    background: #4b5563;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: background 0.2s;
+}
+/* 録音中のアニメーション */
+.icon-btn.recording {
+    background: var(--danger);
+    animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+/* ▲ */
+
+.note{
+    color:var(--muted);
+    margin-top:8px;
+    font-size: 0.9em;
+}
+
+.list{
+    display:flex;
+    flex-direction:column;
+    gap:8px
+}
+
+.item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px;
+    border-radius:12px;
+    border:1px solid #243150;
+    background:#0e162a
+}
+
+.badge{
+    padding:4px 10px;
+    border-radius:999px;
+    font-size:12px;
+    color:#fff
+}
+
+.badge.ok{
+    background:var(--ok)
+}
+
+.badge.warn{
+    background:var(--warn)
+}
+
+.badge.danger{
+    background:var(--danger)
+}
+
+footer{
+    padding:16px 20px;
+    color:var(--muted);
+    text-align:center;
+    border-top:1px solid #1f2a44
+}
+
+
+.calendar-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px
+}
+.calendar-header h2{
+    margin: 0;
+}
+.calendar-header button{
+    font-size: 18px;
+    padding: 4px 12px;
+}
+
+.calendar-grid{
+    display:grid;
+    grid-template-columns:repeat(7, 1fr);
+    gap:4px
+}
+
+.calendar-day{
+    border:1px solid #243150;
+    border-radius:8px;
+    padding:6px;
+    min-height:70px; 
+    font-size:12px;
+    background-color: #121a2e;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    overflow: hidden;
+}
+.calendar-day.header{
+    min-height: auto;
+    text-align: center;
+    font-weight: bold;
+    background: none;
+    border: none;
+    color: var(--muted);
+    padding-bottom: 2px;
+}
+.calendar-day.other-month{
+    background-color: #0e162a;
+    color:var(--muted)
+}
+
+.calendar-day-number{
+    font-weight:bold
+}
+.calendar-day .calendar-day-number.today{
+    background:var(--acc);
+    color:#fff;
+    border-radius:999px;
+    width:22px;
+    height:22px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.calendar-item{
+    font-size:10px;
+    padding:3px 6px;
+    border-radius:6px;
+    color:#fff;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    cursor: default;
+}
+
+.calendar-item.ok{ background:var(--ok); }
+.calendar-item.warn{ background:var(--warn); }
+.calendar-item.danger{ background:var(--danger); }
+
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.list-header h2 {
+    margin: 0;
+}
+
+dialog {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid #243150;
+    border-radius: 16px;
+    padding: 20px;
+    max-width: 90%;
+    width: 400px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+}
+
+button.edit {
+    background: #4b5563; 
+    margin-right: 4px;
+}
+
+/* ▼▼▼ ドラッグ＆ドロップ用スタイル ▼▼▼ */
+.item[draggable="true"] {
+    cursor: grab;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.item[draggable="true"]:active {
+    cursor: grabbing;
+    opacity: 0.6;
+    transform: scale(0.98);
+}
+.calendar-item[draggable="true"] {
+    cursor: grab;
+}
+.calendar-item[draggable="true"]:active {
+    cursor: grabbing;
+}
+
+.calendar-day {
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.calendar-day.drag-over {
+    background-color: rgba(25, 144, 199, 0.4);
+    border: 2px dashed var(--acc);
+}
+
+/* 月切り替えボタンにドラッグアイテムが乗った時のスタイル */
+.calendar-header button.drag-active {
+    background-color: var(--warn);
+    transform: scale(1.1);
+    transition: all 0.2s;
+}
+/* ▼▼▼ AIレシピ表示エリアの修正 (強力版) ▼▼▼ */
+
+/* 外枠のスタイル */
+#recipeOutput {
+    /* 背景色を少し明るくして読みやすく */
+    background-color: #1e293b !important; 
+    border: 1px solid #334155 !important;
+    padding: 20px !important;
+    border-radius: 12px !important;
+    
+    /* 基本の文字色を白に強制統一 */
+    color: #f1f5f9 !important; 
+    
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* 内部のすべての要素の文字色を強制的に継承させる */
+#recipeOutput * {
+    color: inherit !important;
+}
+
+/* 見出し (料理名や「作り方」など) */
+#recipeOutput h2,
+#recipeOutput h3,
+#recipeOutput h4 {
+    color: #60a5fa !important; /* 明るい水色 */
+    margin-top: 24px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #475569;
+    padding-bottom: 6px;
+}
+
+/* 強調箇所 (食材名や重要ポイント) */
+#recipeOutput strong,
+#recipeOutput b {
+    color: #fbbf24 !important; /* 明るい黄色 */
+    background: rgba(251, 191, 36, 0.1);
+    padding: 0 4px;
+    border-radius: 4px;
+}
+
+/* 段落とリスト */
+#recipeOutput p,
+#recipeOutput li {
+    margin-bottom: 10px;
+    color: #e2e8f0 !important; /* 薄いグレーがかった白 */
+}
+
+/* リストの余白 */
+#recipeOutput ul,
+#recipeOutput ol {
+    padding-left: 24px;
+    margin-bottom: 20px;
+}
